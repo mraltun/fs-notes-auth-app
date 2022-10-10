@@ -28,7 +28,9 @@ app.use(cookieParser());
 // Serve static file mw
 app.use("/", express.static(path.join(__dirname, "public")));
 
+// Routes
 app.use("/", require("./routes/root"));
+app.use("/users", require("./routes/userRoutes"));
 
 app.all("*", (req, res) => {
   res.status(404);
