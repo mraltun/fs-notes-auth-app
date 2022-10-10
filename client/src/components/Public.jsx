@@ -31,6 +31,7 @@ const Public = () => {
       </footer>
     </section>
   );
+
   return content;
 };
 
