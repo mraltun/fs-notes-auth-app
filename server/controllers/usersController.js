@@ -9,7 +9,8 @@ const bcrypt = require("bcrypt");
 const getAllUsers = asyncHandler(async (req, res) => {
   // Don't return "password" field. Use lean to return JS object instead full Mongo Document.
   const users = await User.find().select("-password").lean();
-  if (!users) {
+  // Optional chaining otherwise it would send empty array
+  if (!users?.length) {
     return res.status(400).json({ message: "No users found" });
   }
   res.json(users);
@@ -102,8 +103,8 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 
   // Find if the user has notes and don't delete the user
-  const notes = await Note.findOne({ user: id }).lean().exec();
-  if (notes?.length) {
+  const note = await Note.findOne({ user: id }).lean().exec();
+  if (note) {
     return res.status(400).json({ message: "User has assigned notes" });
   }
 
