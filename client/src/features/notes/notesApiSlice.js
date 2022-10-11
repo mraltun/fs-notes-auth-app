@@ -41,7 +41,7 @@ export const { useGetNotesQuery } = notesApiSlice;
 export const selectNotesResult = notesApiSlice.endpoints.getNotes.select();
 
 // Creates memoized selector
-const selectnotesData = createSelector(
+const selectNotesData = createSelector(
   selectNotesResult,
   // Normalized state object with ids and entities
   (notesResult) => notesResult.data
@@ -49,10 +49,10 @@ const selectnotesData = createSelector(
 
 // getSelectors creates these selectors and we rename them with aliases using destructuring
 export const {
-  selectAll: selectAllnotes,
-  selectById: selectnoteById,
-  selectIds: selectnoteIds,
+  selectAll: selectAllNotes,
+  selectById: selectNoteById,
+  selectIds: selectNoteIds,
   // Pass in a selector that returns the notes slice of state
 } = notesAdapter.getSelectors(
-  (state) => selectnotesData(state) ?? initialState
+  (state) => selectNotesData(state) ?? initialState
 );
