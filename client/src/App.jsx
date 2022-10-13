@@ -27,13 +27,13 @@ const App = () => {
             <Route path='users'>
               <Route index element={<UsersList />} />
               <Route path=':id' element={<EditUser />} />
-              <Route path=':new' element={<NewUserForm />} />
+              <Route path='new' element={<NewUserForm />} />
             </Route>
 
             <Route path='notes'>
               <Route index element={<NotesList />} />
               <Route path=':id' element={<EditNote />} />
-              <Route path=':new' element={<NewNote />} />{" "}
+              <Route path=':new' element={<NewNote />} />
             </Route>
           </Route>
         </Route>

@@ -9,7 +9,15 @@ const NotesList = () => {
     isSuccess,
     isError,
     error,
-  } = useGetNotesQuery();
+    // setupListeners in the store enabled in store for these options. One of the reasons for this to keep it updated for multiple users
+  } = useGetNotesQuery(undefined, {
+    // Re-fetch data interval
+    pollingInterval: 15000,
+    // Re-fetch when the app window on focus again
+    refetchOnFocus: true,
+    // Re-fetch  refetch when a new subscriber to a query is added
+    refetchOnMountOrArgChange: true,
+  });
 
   let content;
 
