@@ -19,8 +19,9 @@ export const authApiSlice = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           // Promise that will resolve with the (transformed) query result. If the query fails, this promise will reject with the error. This allows you to await for the query to finish.
-          const data = await queryFulfilled;
-          console.log(data);
+          // const data =
+          await queryFulfilled;
+          //   console.log(data);
           dispatch(logOut());
           dispatch(apiSlice.util.resetApiState());
         } catch (error) {
