@@ -10,7 +10,7 @@ const UsersList = () => {
     isError,
     error,
     // setupListeners in the store enabled in store for these options. One of the reasons for this to keep it updated for multiple users
-  } = useGetUsersQuery(undefined, {
+  } = useGetUsersQuery("usersList", {
     // Re-fetch data interval
     pollingInterval: 60000,
     // Re-fetch when the app window on focus again

@@ -10,7 +10,7 @@ const NotesList = () => {
     isError,
     error,
     // setupListeners in the store enabled in store for these options. One of the reasons for this to keep it updated for multiple users
-  } = useGetNotesQuery(undefined, {
+  } = useGetNotesQuery("notesList", {
     // Re-fetch data interval
     pollingInterval: 15000,
     // Re-fetch when the app window on focus again
