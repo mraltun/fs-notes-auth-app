@@ -1,5 +1,5 @@
 import { apiSlice } from "../../app/api/apiSlice";
-import { logOut } from "./authSlice";
+import { logOut, setCredentials } from "./authSlice";
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -36,6 +36,17 @@ export const authApiSlice = apiSlice.injectEndpoints({
         url: "/auth/refresh",
         method: "GET",
       }),
+      // We set credentials when we use refresh in here so we don't have to import useDispatch and action creator in every component we want to use it in.
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          console.log(data);
+          const { accessToken } = data;
+          dispatch(setCredentials({ accessToken }));
+        } catch (error) {
+          console.log(error);
+        }
+      },
     }),
   }),
 });
