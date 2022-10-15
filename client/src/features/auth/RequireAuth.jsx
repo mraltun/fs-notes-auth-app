@@ -9,6 +9,7 @@ const RequireAuth = ({ allowedRoles }) => {
   const content = roles.some((role) => allowedRoles.includes(role)) ? (
     <Outlet />
   ) : (
+    // Make back button work
     <Navigate to='/login' state={{ from: location }} replace />
   );
 

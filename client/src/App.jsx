@@ -20,7 +20,7 @@ const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        {/* public routes */}
+        {/* Public Routes */}
         <Route index element={<Public />} />
         <Route path='login' element={<Login />} />
 
