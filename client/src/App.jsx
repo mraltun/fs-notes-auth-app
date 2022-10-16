@@ -14,9 +14,11 @@ import NewNote from "./features/notes/NewNote";
 import Prefetch from "./features/auth/Prefetch";
 import PersistLogin from "./features/auth/PersistLogin";
 import RequireAuth from "./features/auth/RequireAuth";
+import useTitle from "./hooks/useTitle";
 import { ROLES } from "./config/roles";
 
 const App = () => {
+  useTitle("Note App Title from Hook");
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
