@@ -1,13 +1,16 @@
-import React from "react";
+import React, { memo } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectNoteById } from "./notesApiSlice";
+import { useGetNotesQuery } from "./notesApiSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 const Note = ({ noteId }) => {
-  const note = useSelector((state) => selectNoteById(state, noteId));
-
+  const { note } = useGetNotesQuery("notesList", {
+    // Get the data from query result. The component won't rerender until data is changed
+    selectFromResult: ({ data }) => ({
+      note: data?.entities[noteId],
+    }),
+  });
   const navigate = useNavigate();
 
   if (note) {
@@ -46,4 +49,8 @@ const Note = ({ noteId }) => {
     );
   } else return null;
 };
-export default Note;
+
+// Memoize to render the component only the data changes
+const memoizedNote = memo(Note);
+
+export default memoizedNote;
