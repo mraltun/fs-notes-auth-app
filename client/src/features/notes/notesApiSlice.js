@@ -11,11 +11,13 @@ const initialState = notesAdapter.getInitialState();
 export const notesApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getNotes: builder.query({
-      query: () => "/notes",
-      // RTK Query always returns a 200, but sets an `isError` property when there is an error.
-      validateStatus: (response, result) => {
-        return response.status === 200 && !result.isError;
-      },
+      query: () => ({
+        url: "/notes",
+        // RTK Query always returns a 200, but sets an `isError` property when there is an error.
+        validateStatus: (response, result) => {
+          return response.status === 200 && !result.isError;
+        },
+      }),
       // If you query an endpoint, then unmount the component, then mount another component that makes the same request within the given time frame (5 sec), the most recent value will be served from the cache.
       // keepUnusedDataFor: 5,
       // Match id with MongoDB "_id" before query hit the cache
