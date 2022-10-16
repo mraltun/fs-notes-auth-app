@@ -43,11 +43,11 @@ const PersistLogin = () => {
   let content;
   if (!persist) {
     // persist: no
-    console.log("No persist");
+    console.log("no persist");
     content = <Outlet />;
   } else if (isLoading) {
     //persist: yes, token: no
-    console.log("Loading");
+    console.log("loading");
     content = <PulseLoader color={"#FFF"} />;
   } else if (isError) {
     //persist: yes, token: no
@@ -60,15 +60,16 @@ const PersistLogin = () => {
     );
   } else if (isSuccess && trueSuccess) {
     //persist: yes, token: yes
-    console.log("Success");
+    console.log("success");
     content = <Outlet />;
   } else if (token && isUninitialized) {
     //persist: yes, token: yes
-    console.log("Token and uninit");
+    console.log("token and uninit");
     console.log(isUninitialized);
     content = <Outlet />;
   }
 
   return content;
 };
+
 export default PersistLogin;
